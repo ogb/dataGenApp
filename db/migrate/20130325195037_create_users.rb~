@@ -1,0 +1,12 @@
+class CreateUsers < ActiveRecord::Migration
+  def change
+    create_table :users do |t|
+      t.string :email, :default => 'dude'
+      t.string :salt, :default => 'dude'
+      t.string :password, :default => 'dude'
+      t.string :password_confirmation, :default => 'dude'
+      t.timestamps
+    end
+    
+  end
+end
