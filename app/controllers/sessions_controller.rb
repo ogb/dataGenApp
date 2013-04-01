@@ -2,19 +2,20 @@ class SessionsController < ApplicationController
 
   #displays login form ( new.html.erb )
   def new
+    puts "HELLO SERVER TEXT WATCHER"
+    # this simply renders the following text. The view new.html.erb never gets rendered with the following statement.
+    # render :text => "IM FROM THE NEW ACTION !"
   end
 
   # POST login action
   def create
-    @user = User.authenticate params[:email], params[:password]
-    if @user
-      session[:user_id] = @user.id
-      #redirect_to profile_path(), :notice1 => 'Welcome back, '
-      render 'users/show'
+    user = User.authenticate params[:email], params[:password]
+    if user
+      session[:user_id] = user.id
+      redirect_to profile_path(user.email)
     else
       flash[:notice] = "Please enter valid information"
-      render 'new'
-      #redirect_to new_session_path, :alert => "BAD DATA!"
+      redirect_to new_session_path
     end
   end
 
