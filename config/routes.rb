@@ -56,7 +56,9 @@ DataGenApp::Application.routes.draw do
   # this works !!!!
   match 'profile/:email' => 'users#show', :as => :profile 
 
-  resources :sessions, :only => [:create, :new, :destroy]
+  match 'logout' => 'sessions#destroy', :as => 'logout'
+
+  resources :sessions, :only => [:create, :new]
 
   # See how all your routes lay out with "rake routes"
 
