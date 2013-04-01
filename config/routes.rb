@@ -54,7 +54,7 @@ DataGenApp::Application.routes.draw do
 
 
   # this works !!!!
-  match 'profile' => 'users#show', :as => :profile 
+  match 'profile/:email' => 'users#show', :as => :profile 
 
   resources :sessions, :only => [:create, :new, :destroy]
 
