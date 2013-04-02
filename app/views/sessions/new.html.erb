@@ -1,25 +1,30 @@
 
 
-<h1>* Deuteronomy 24:6 *</h1>
+  <% if flash[:notice] %>
+    <div class="alert alert-error" class="span9" >
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <%= flash[:notice] %>
+    </div>
+  <% end %>
 
-<%= flash[:notice] %>
 
+<div id="login" class="span6 offset6" >
 
-<p> You know what to do...</p>
-<%= form_tag sessions_path do %>
+  <%= form_tag sessions_path do %>
 
-  <p>
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email %>
-  </p>
+    <h2 class="form-signin-heading">* Deuteronomy 24:6 *</h2>
 
-  <p>
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </p>
+    <%= label_tag :email, "Email:", :class => "text-info" %>
+    <%= text_field_tag :email, nil, :class => "input-block" %>
+    
+    <br></br>
+    
+    <%= label_tag :password, "Password:", :class => "text-info" %>
+    <%= password_field_tag :password, nil, :class => "input-block" %>
 
-  <p>
-    <%= submit_tag "Login" %>
-  </p>
-<% end %>
+    <br></br>
 
+    <%= submit_tag "Login", :class => "btn btn-small btn-primary"  %>
+
+  <% end %>
+</div>

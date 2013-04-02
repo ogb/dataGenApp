@@ -10,3 +10,6 @@
 #newUserSalt = BCrypt::Engine.generate_salt
 #newUserPass = BCrypt::Engine.hash_secret("test", newUserSalt)
 u = User.create :email => "ogb", :salt => 'notyet', :password => 'test', :password_confirmation => 'test'
+
+# vince's account
+u = User.create :email => "vin", :salt => 'soonMy', :password => 'test11', :password_confirmation => 'test11'
