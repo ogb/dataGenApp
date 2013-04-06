@@ -1,10 +1,19 @@
 
-
-
+<% if flash[:notice]  %>
+  <div class="alert alert-error" class="span9">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <%= flash[:notice]  %>
+  </div>
+<% end %>
 
 <p> User email: <%= @user.email %></p>
 <p> User Id: <%= @user.id %></p>
 
-<%= link_to "Download file", df_path %>
+<h2 class="form-signin-heading"> Download a file! </h2>
 
-<p> <%= link_to "Logout", logout_path %> </p>
+<%= form_tag df_path do %>
+  <%= text_field_tag :fileName, nil, :class => "input-block" %>
+  <%= submit_tag "Download", :class => "btn btn-small btn-primary" %>
+<% end %>
+
+<%= link_to "Logout", logout_path %> 

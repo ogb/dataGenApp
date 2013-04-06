@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def show
     userSession = User.find_by_id(session[:user_id])
     userParams = User.find_by_email(params[:email])
-    if userSession.id != userParams.id
+    if userSession.id != (userParams.id if userParams)
       redirect_to root_path
     else
       @user = userParams
@@ -33,12 +33,17 @@ class UsersController < ApplicationController
   def download
     userSession = User.find_by_id(session[:user_id])
     userParams = User.find_by_email(params[:email])
+    fileName = params[:fileName]
     if userSession.id != userParams.id
       redirect_to root_path
     else
-      fileName = 'fileFOR_DL'
       file = "#{Rails.root}/#{fileName}"
-      send_file file, :filename => fileName
+      if File.exists?(file) and !File.directory?(file)
+        send_file file, :filename => fileName
+      else
+        flash[:notice] = "File wasn't found on server or something else happened"
+        redirect_to profile_path
+      end
     end 
   end
 
