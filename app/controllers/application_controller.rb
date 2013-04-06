@@ -8,7 +8,12 @@ class ApplicationController < ActionController::Base
   def checkSession
     if nil == currentUser
       redirect_to root_path
-  
+    end
+  end
+
+  def checkSessionTime
+    if Time.now >= (session[:exp_time] + 60*5) 
+      redirect_to logout_path
     end
   end
 

@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
-  before_filter :checkSession, only: [:show]
-  
+  # any functions needed with 'match' in routes file needs to be added here.. 
+  before_filter :checkSession, only: [:show, :download]
+  before_filter :checkSessionTime, only: [:show, :download]
+
   def new
     @user = User.new
   end
@@ -28,4 +30,17 @@ class UsersController < ApplicationController
  
   end
 
+  def download
+    userSession = User.find_by_id(session[:user_id])
+    userParams = User.find_by_email(params[:email])
+    if userSession.id != userParams.id
+      redirect_to root_path
+    else
+      fileName = 'fileFOR_DL'
+      file = "#{Rails.root}/#{fileName}"
+      send_file file, :filename => fileName
+    end 
+  end
+
 end
+

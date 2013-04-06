@@ -1,3 +1,6 @@
+
+
+
 class SessionsController < ApplicationController
 
   #displays login form ( new.html.erb )
@@ -15,8 +18,9 @@ class SessionsController < ApplicationController
   # POST login action
   def create
     user = User.authenticate params[:email], params[:password]
-    if user
+    if user # then validate user
       session[:user_id] = user.id
+      session[:exp_time] = Time.now 
       redirect_to profile_path(user.email)
     else
       flash[:notice] = "Please enter valid information"
@@ -27,6 +31,7 @@ class SessionsController < ApplicationController
   # DELETE logout action
   def destroy
     session[:user_id] = nil
+    session[:exp_time] = nil
     redirect_to root_url
     puts "DESTROY SESSION"
   end
