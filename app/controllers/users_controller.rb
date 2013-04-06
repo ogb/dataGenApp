@@ -4,9 +4,9 @@ class UsersController < ApplicationController
   before_filter :checkSession, only: [:show, :download]
   before_filter :checkSessionTime, only: [:show, :download]
 
-  def new
-    @user = User.new
-  end
+#  def new
+#    @user = User.new
+#  end
 
 #
  # def create

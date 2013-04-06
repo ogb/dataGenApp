@@ -2,6 +2,15 @@ DataGenApp::Application.routes.draw do
 
   root :to => 'sessions#new'
 
+  match 'ul/:email' => 'uploads#create', :as => :ul
+
+  # this works !!!!
+  match 'profile/:email' => 'users#show', :as => :profile 
+
+  match 'logout' => 'sessions#destroy', :as => 'logout'
+
+  resources :sessions, :only => [:create, :new]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -51,15 +60,6 @@ DataGenApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-
-  match 'df/:email' => 'users#download', :as => :df
-
-  # this works !!!!
-  match 'profile/:email' => 'users#show', :as => :profile 
-
-  match 'logout' => 'sessions#destroy', :as => 'logout'
-
-  resources :sessions, :only => [:create, :new]
 
   # See how all your routes lay out with "rake routes"
 

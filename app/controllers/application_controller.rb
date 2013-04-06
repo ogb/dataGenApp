@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   def currentUser
     @currentUser ||= User.find(session[:user_id]) if session[:user_id]
   end
+  helper_method :currentUser
 
   def checkSession
     if nil == currentUser

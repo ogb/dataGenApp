@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
 
+  has_many :uploads, :dependent => :destroy
+
   def self.authenticate email, password
     user = find_by_email email
     returnVal = false
