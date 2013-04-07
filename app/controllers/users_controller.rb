@@ -4,21 +4,6 @@ class UsersController < ApplicationController
   before_filter :checkSession, only: [:show, :download]
   before_filter :checkSessionTime, only: [:show, :download]
 
-#  def new
-#    @user = User.new
-#  end
-
-#
- # def create
-  #  @user = User.new params[:user]
-   # if @user.save
-    #  session[:user_id] = @user.id
-     # redirect_to root_url, :notice => "Welcome!"
-#    else
- #     render 'new'
-  #  end
-#  end
-
   def show
     userSession = User.find_by_id(session[:user_id])
     userParams = User.find_by_email(params[:email])

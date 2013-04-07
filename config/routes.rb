@@ -2,6 +2,8 @@ DataGenApp::Application.routes.draw do
 
   root :to => 'sessions#new'
 
+  match 'df/:id' => 'uploads#destroy', :as => :df
+
   match 'ul/:email' => 'uploads#create', :as => :ul
 
   # this works !!!!

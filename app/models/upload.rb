@@ -10,4 +10,9 @@ class Upload < ActiveRecord::Base
     path = File.join(directory, name)
     File.open(path, "wb") { |f| f.write(uploadData.read) }
   end
+
+  def self.removeFile( path )
+    FileUtils.rm(path)
+  end
+
 end
