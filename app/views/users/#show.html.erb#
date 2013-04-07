@@ -9,12 +9,10 @@
 <p> User email: <%= @user.email %></p>
 <p> User Id: <%= @user.id %></p>
 
-<h2 class="form-signin-heading"> Upload a file! </h2>
+<h2 class="form-signin-heading"> Download a file! </h2>
 
-<%= form_tag ul_path, :multipart => true do %>
-  <%=  file_field_tag 'uploadFile' %>
-  <br></br>
-  <%= submit_tag "upload", :class => "btn btn-small btn-primary"  %>
-<% end %>
+<%= form_tag df_path, :multipart => true do %>
+  <%= text_field_tag :fileName, nil, :class => "input-block" %>
+  %= submit_tag "Download",:class => "btn btn-small btn-primary" %><% end %>
 
 <%= link_to "Logout", logout_path %> 
